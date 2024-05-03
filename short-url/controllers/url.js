@@ -11,9 +11,12 @@ const handleGenerateShortUrl = async (req, res) => {
     shortId: shortId,
     redirectUrl: body.url,
     visitHistory: [],
+    createdBy: req.user._id,
   });
 
-  return res.status(201).json({ id: shortId });
+  return res.render("home", { id: shortId });
+
+  //return res.status(201).json({ id: shortId });
 };
 
 const handleShortIdAndRedirect = async (req, res) => {
@@ -32,7 +35,7 @@ const handleShortIdAndRedirect = async (req, res) => {
     }
   );
 
-  console.log("entry:", entry);
+  //console.log("entry:", entry);
 
   res.redirect(entry.redirectUrl);
 };
